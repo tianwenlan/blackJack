@@ -1,0 +1,299 @@
+/*=================================================================================
+section-topbar */
+
+body {margin: 0;}
+
+/*=================================================================================
+section-header */
+#section-header{
+  background-image: url("../img/background.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  text-align: center;
+  height: 60%;
+  color: #fff;
+}
+
+#lean_overlay {
+        position: fixed;
+        z-index: 100;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        background: #000;
+        display: none;
+}
+
+.popupContainer {
+        position: absolute;
+        width: 330px;
+        height: auto;
+        left: 45%;
+        top: 60px;
+        background: #FFF;
+}
+
+#modal_trigger {
+}
+
+.btn {
+        padding: 10px 20px;
+        background: #F4F4F2;
+}
+
+.btn_red {
+        background: #ED6347;
+        color: #FFF;
+}
+
+.btn:hover {
+        background: #E4E4E2;
+}
+
+.btn_red:hover {
+        background: #C12B05;
+}
+
+a.btn {
+        color: #666;
+        text-align: center;
+        text-decoration: none;
+}
+
+a.btn_red {
+        color: #FFF;
+}
+
+.one_half {
+        width: 50%;
+        display: block;
+        float: left;
+}
+
+.one_half.last {
+        width: 45%;
+        margin-left: 5%;
+}
+/* Popup Styles*/
+
+.popupHeader {
+        font-size: 16px;
+        text-transform: uppercase;
+        background: #F4F4F2;
+        position: relative;
+        padding: 10px 20px;
+        border-bottom: 1px solid #DDD;
+        font-weight: bold;
+}
+
+.popupHeader .modal_close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 10px 15px;
+        background: #E4E4E2;
+        cursor: pointer;
+        color: #aaa;
+        font-size: 16px;
+}
+
+.popupBody {
+        padding: 20px;
+}
+/* Social Login Form */
+
+.social_login {}
+
+.social_login .social_box {
+        display: block;
+        clear: both;
+        padding: 10px;
+        margin-bottom: 10px;
+        background: #F4F4F2;
+        overflow: hidden;
+}
+
+.social_login .icon {
+        display: block;
+        width: 10px;
+        padding: 5px 10px;
+        margin-right: 10px;
+        float: left;
+        color: #FFF;
+        font-size: 16px;
+        text-align: center;
+}
+
+.social_login .fb .icon {
+        background: #3B5998;
+}
+
+.social_login .google .icon {
+        background: #DD4B39;
+}
+
+.social_login .icon_title {
+        display: block;
+        padding: 5px 0;
+        float: left;
+        font-weight: bold;
+        font-size: 16px;
+        color: #777;
+}
+
+.social_login .social_box:hover {
+        background: #E4E4E2;
+}
+
+.centeredText {
+        text-align: center;
+        margin: 20px 0;
+        clear: both;
+        overflow: hidden;
+        text-transform: uppercase;
+}
+
+.action_btns {
+        clear: both;
+        overflow: hidden;
+}
+
+.action_btns a {
+        display: block;
+}
+/* User Login Form */
+
+.user_login {
+  
+}
+
+.user_login label {
+        display: block;
+        margin-bottom: 5px;
+}
+
+.user_login input[type="text"],
+.user_login input[type="email"],
+.user_login input[type="password"] {
+        display: block;
+        width: 90%;
+        padding: 10px;
+        border: 1px solid #DDD;
+        color: #666;
+}
+
+.user_login input[type="checkbox"] {
+        float: left;
+        margin-right: 5px;
+}
+
+.user_login input[type="checkbox"]+label {
+        float: left;
+}
+
+.user_login .checkbox {
+        margin-bottom: 10px;
+        clear: both;
+        overflow: hidden;
+}
+
+.forgot_password {
+        display: block;
+        margin: 20px 0 10px;
+        clear: both;
+        overflow: hidden;
+        text-decoration: none;
+        color: #ED6347;
+}
+/* User Register Form */
+
+.user_register {
+        display: none;
+}
+
+.user_register label {
+        display: block;
+        margin-bottom: 5px;
+}
+
+.user_register input[type="text"],
+.user_register input[type="email"],
+.user_register input[type="password"] {
+        display: block;
+        width: 90%;
+        padding: 10px;
+        border: 1px solid #DDD;
+        color: #666;
+}
+
+.user_register input[type="checkbox"] {
+        float: left;
+        margin-right: 5px;
+}
+
+.user_register input[type="checkbox"]+label {
+        float: left;
+}
+
+.user_register .checkbox {
+        margin-bottom: 10px;
+        clear: both;
+        overflow: hidden;
+}
+
+/*=================================================================================
+section-about */
+#section-about {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 20%;
+  padding-right: 20%;
+  background-color: #2E2E2E; 
+  color: #fff;
+}
+
+
+/*=================================================================================
+Footer */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  text-align: center;
+  font: normal 16px sans-serif;
+  padding: 10px 0px 10px 0px;
+  background-color: #33383b;
+}
+
+.footer a{
+  display: inline-block;
+  width: 30px;
+  height: 25px;
+  background-color:  #000;
+  border-radius: 2px;
+  font-size: 20px;
+  padding-top: 5px;
+  color: #fff;
+  text-align: center;
+  margin-left: 3px;
+  margin-top: 10px;
+}
+
+.footer a:hover{
+    background-color: #000;
+    color: #33383b;
+}
+
+.footer p{
+  color: #eee;
+  font-size: 12px;
+}
+
+
+.card{
+  width:15%;
+}
+
+

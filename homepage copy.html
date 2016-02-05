@@ -1,0 +1,386 @@
+<!DOCTYPE html5>
+<html>
+<head>
+  <meta charset="utf8"/>
+  <meta name="homepage" content="Black Jack"/>
+  <title>Black Jack</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="css/homepage.css" type="text/css"/>
+
+  <style type="text/css">
+        body{
+          background-color: #CC00CC;
+        }
+        .mainClass{
+          color:#99CCFF;
+          font-family: impact, serif;
+          font-weight: bold;
+          font-style: italic;
+          font-size:250%;
+          margin-left: auto;
+          margin-right: auto;
+          text-align: center;
+        }
+        .cards{
+          color:#FF7519;
+          font-style: normal;
+        }
+  </style>
+  <script type="text/javascript">
+        var playerIndex = new Array(); // playerIndex[0] = {playerHand, playerHandSuit, playerHandValueHard, PlayerHandValueSoft}
+        var playerHand = new Array();
+        var playerHandSuit = new Array();
+        var dealerHand = new Array();
+        var dealerHandSuit = new Array();
+        var playerHandValueHard = 0;
+        var playerHandValueSoft = 0;
+        var dealerHandValueHard = 0;
+        var dealerHandValueSoft = 0;
+        var playerCardNumber = 0;
+        var dealerCardNumber = 0;
+        var playerNumber = 0;
+        var numberOfPlayers = 1;
+        var stillin = true; //track if busted
+        var winner = 0; // Does nothing
+        var dealerStillin = true;
+        var gameGoing = true;
+
+function gameStart(){
+  playerNumber = 0;
+  dealerHit();
+  playerStart();
+  document.getElementById("Controls").innerHTML = "<p>Welmcome to BlackJack </p>";
+  return;
+}
+
+function playerStart(){
+  playerHit();
+  playerHit();
+  return;
+}
+
+function dealer(){
+  gameGoing = victoryCheck(2);
+  while(dealerHandValueHard < 16 && (dealerHandValueSoft < 16 || dealerHandValueSoft > 21) && dealerStillin && gameGoing){
+    dealerHit();
+  }
+
+  if(gameGoing){
+    if(dealerStillin){
+      if((dealerHandValueSoft != dealerHandValueHard) && dealerHandValueSoft < 21){
+        alert("Dealer sticks at: " + dealerHandValueHard + "/" + dealerHandValueSoft);
+      }
+    }
+    gameGoing = victoryCheck(0);
+  }
+  return;
+}
+
+function doubleDown(){
+  if(gameGoing){
+    playerHit(1);
+    stick();
+  }else{
+    alert("The game is over!");
+  }
+}
+
+function victoryCheck(j){
+  var x;
+  var c = 0;
+  var i;
+  var whoWon = new Array();
+  var whoTied = new Array();
+  var whoLost = new Array();
+
+  if(j == 0 || j == 2){}
+    for(i in playerIndex){
+      x = playerIndex[i];
+      if(x[5]){
+        c = 1;
+      }
+    }
+    if(c==0){
+      alert("Everyone is out! Dealer wins by default!");
+      return false;
+    }
+    if(j==2){
+      return true;
+    }
+
+    var k = 0;
+    var kc = 0;
+    var kcc = 0;
+
+    for(i in playerIndex){
+      x = playerIndex[i];
+      if(dealerHandValueSoft < 21){
+        if(x[4] < 21 && x[4] > dealerHandValueHard && ){
+          whoWon[k] = i;
+          k = k+1;
+        }else if(x[4]<21 && x[4] >= dealerHandValueHard){
+          whoTied[kc] = i;
+          kc = k+1;
+        }else{
+          whoLost[k] = i;
+          kcc = kcc+1;
+        }
+      }else{
+        if((x[4] < 21 && x[4] > dealerhandValueHard) || (x[3] > )){
+          whoWon[k] = i;
+          k = k+1;
+        }else if((x[4]<21 && x[4] >= dealerHandValueHard) || ()){
+          whoTied[kc] = i;
+          kc = k+1;
+        }else{
+          whoLost[k] = i;
+          kcc = kcc+1;
+        }
+      }
+    }
+
+    for(i in whoWon){
+      alert("Player" + (Number(whoWon[i]+1)) + " won!");
+    }
+
+    for(i in whoTied){
+      alert("Player" + (Number(whoTied[i]+1)) + " tied!");
+    }
+
+    for(i in whoLost){
+      alert("Player" + (Number(whoLost[i]+1)) + " lost!");
+    }
+  }else if(j==1){
+                //Dealer bust
+                var pizza = 0; //Adds space in whoWon for the winner
+                for(i in playerIndex){
+                  x = playerIndex[i];
+                  if(x[5]){
+                    c = 1;
+                    whoWon[pizza] = i;
+                    pizza = pizza + 1;
+                  }
+
+                  if(c===0){
+                    alert("Everyone is out!");
+                  }
+                }
+              }
+            }
+
+            function reset(){
+              playerIndex = {};
+              playerHand = {};
+              playerHandSuit = {};
+              dealerHand = {};
+              dealerHandSuit = {};
+              playerHandValueHard = 0;
+              playerHandValueSoft = 0;
+              dealerHandValueHard = 0;
+              dealerHandValueSoft = 0;
+              dealerCardNumber = 0;
+              playerCardNumber = 0;
+              playerNumber = 0;
+              numberOfPlayers = 1;
+              stillin = true;
+              winner = 0;
+              dealerStillin = true;
+              gameGoing = true;
+              document.getElementById("Main").innerHTML = "<p>Welmcome to BlackJack </p>";
+              return;
+            }
+
+      function stick(){
+              if(gameGoing){}
+                playerIndex[playerNumber] = [playerHand, playerHandSuit, playerCardNumber, playerHandValueHard, PlayerHandValueSoft, stillin, winner];
+              playerNumer = playerNumber +1;
+              if(playerNumber >= numberOfPlayers){
+                dealer();
+              }else{
+                playerHandValueHard = 0;
+                playerHandValueSoft = 0;
+                playerCardNumber = 0;
+                playerHand = new Array();
+                playerHandSuit = new Array();
+                playerStart();
+              }
+            }else{
+              aleart("This game is over! There is no point in hitting! Press restart!")
+            }
+
+            return;
+      }
+
+        function dealerHit(){
+          var suit = randSuit();
+          var card = randCard(); //card[0] = The card shown to the player, card[1] is its value, card[2] is its soft value
+          dealerHand[dealerCardNumber] = card[0];
+          dealerHandSuit[playerCardNumber] = suit;
+          dealerHandValueHard =  dealerHandValueHard + card[1];
+          dealerHandValueSoft = dealerHandValueSoft + card[2];
+          dealerStillin = bustCheck(dealerHand);
+          dealerCardNumber = dealerCardNumber+1;
+      }
+
+      /*----------- functions for hit ------------- */
+      function playerHit(doubleDown){
+        if(gameGoing){
+
+          var suit = randSuit();
+          var card = randCard(); //card[0] = The card shown to the player, card[1] is its value, card[2] is its soft value
+          playerHand[playerCardNumber] = card[0];
+          playerHandSuit[playerCardNumber] = suit;
+          playerHandValueHard =  playerHandValueHard + card[1];
+          playlerHandValueSoft = playerHandValueSoft + card[2];
+          playerCardNumber = playerCardNumber+1;
+          stillin = bustCheck(playerHandValueHard,1);
+          updateHand();
+
+          if(!stillin && doubleDown !=1){
+              stick();
+          }
+        }else{
+              aleart("This game is over! There is no point in hitting! Press restart!")
+        }
+      }
+
+            function updateHand(){
+              var b;
+              var i;
+              var mmm = 0;
+              for(i in playerHand){
+                if(mmm < 1){
+                  b = playerHand[i] + " of" ;
+                  mmm = mmm + 1; 
+                }else{
+
+                }
+              }
+            }
+
+            function bustCheck(x,y){
+              if(x>21){
+                if(y==1){
+                  alert("Over Twenty-one! Bust!");
+                }else{
+                  alert("Dealer Bust! Everyone's a winner!");
+                }
+                
+                return false;
+              }else{
+                return true;
+              }
+            }
+
+
+
+            function randSuit(){
+              var suit;
+              rand = random(0,3);
+              switch(rand){
+                case 0: 
+                suit = "Hearts";
+                break; 
+                case 1: 
+                suit = "Spades";
+                break;
+                case 2: 
+                suit = "Diamonds";
+                break;
+                case 3: 
+                suit = "Clubs";
+                break;
+                default:
+                alert("Unknown error getting suit...");
+              }
+              function random(x,y){
+                return Math.floor(math.random() *(y-x+1))+x; //return a value from 0 -1
+              } 
+            }
+
+            function randCard(){
+              var cardArray = new Array();
+              var randCard = random(1,13);
+              switch(rand){
+                case 1: 
+                cardArray[0] = "A";
+                cardArray[1] = "1";
+                cardArray[2] = "11";
+                break; 
+                case 11: 
+                cardArray[0] = "J";
+                cardArray[1] = "10";
+                cardArray[2] = "10";
+                break;
+                case 12: 
+                cardArray[0] = "Q";
+                cardArray[1] = "10";
+                cardArray[2] = "10";
+                break;
+                case 13: 
+                cardArray[0] = "K";
+                cardArray[1] = "10";
+                cardArray[2] = "10";
+                break;
+                default:
+                cardArray[0] = randCard;
+                cardArray[1] = randCard;
+                cardArray[2] = randCard;
+
+              }
+              return cardArray;
+
+              function random(x,y){
+                return Math.floor(math.random() *(y-x+1))+x; //return a value from 0 -1
+              } 
+            }
+
+            </script>
+
+
+          </head>
+
+          <body>
+            <div id = "Main" class = "mainClass">
+              <p>Welcome to balckJack. To play the game, feel free to use the buttons below.</p>
+              <div id = "dealerHand" class = "cards"> Dealer currently has no cards...</div><br>
+              <div id = "activePlayerHand" class = "cards"> Currently no active player...</div>
+              <div id = "Controls">
+                <input type = "button" value = "start" onclick = "gameStart()">
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+    <!-- =============================================
+    Footer: 
+  -->
+  <footer class="footer">
+    <div class="container">
+      <p> Wenlan Tian © 2015  </P>
+        <a href="https://www.linkedin.com/pub/wenlan-tian/55/a23/935"><i class="fa fa-linkedin"></i></a>
+        <a href="https://github.com/tianwenlan"><i class="fa fa-github"></i></a>
+        <a href="https://www.facebook.com/wenlan.tian"><i class="fa fa-facebook"></i></a>
+        <a href="https://twitter.com/tianwenlan"><i class="fa fa-twitter"></i></a>
+        <a href="mailto:tianwenlan@gmail.com"><i class="fa fa-envelope"></i></a>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- script type="text/javascript" src="script/script.js"></script -->
+
+  </body>
+  </html>
